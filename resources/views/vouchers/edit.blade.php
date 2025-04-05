@@ -15,24 +15,24 @@
                 @method('PUT')
 
                 <div class="form-group">
-                    <label>Kode Voucher</label>
+                    <label>Voucher Code/Name Voucher</label>
                     <input type="text" name="code" class="form-control" value="{{ old('code', $voucher->code) }}" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Deskripsi</label>
+                    <label>Description</label>
                     <input type="text" name="description" class="form-control" value="{{ old('description', $voucher->description) }}">
                 </div>
 
                 <div class="form-group">
-                    <label>Tanggal Berlaku</label>
+                    <label>Due Date</label>
                     <input type="date" name="valid_until" class="form-control"
                         value="{{ old('valid_until', \Carbon\Carbon::parse($voucher->valid_until)->format('Y-m-d')) }}"
                         required>
                 </div>
 
                 <div class="form-group">
-                    <label>Diskon (%)</label>
+                    <label>Discount (%)</label>
                     <input type="number" name="discount" class="form-control" value="{{ old('discount', $voucher->discount) }}" required>
                 </div>
 

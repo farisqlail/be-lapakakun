@@ -9,22 +9,22 @@
             <form action="{{ route('vouchers.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label>Kode Voucher</label>
+                    <label>Code Voucher/Name Voucher</label>
                     <input type="text" name="code" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label>Deskripsi</label>
+                    <label>Description</label>
                     <input type="text" name="description" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Tanggal Berlaku</label>
+                    <label>Due Date</label>
                     <input type="date" name="valid_until" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label>Diskon (%)</label>
+                    <label>Discount (%)</label>
                     <input type="number" name="discount" class="form-control" required>
                 </div>
-                <button class="btn btn-primary">Simpan</button>
+                <button class="btn btn-primary">Save</button>
             </form>
         </div>
     </div>

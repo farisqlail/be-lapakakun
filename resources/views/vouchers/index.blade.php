@@ -14,11 +14,11 @@
             <table class="table table-bordered" id="vouchersTable">
                 <thead>
                     <tr>
-                        <th>Kode</th>
-                        <th>Deskripsi</th>
-                        <th>Berlaku Sampai</th>
-                        <th>Diskon</th>
-                        <th>Aksi</th>
+                        <th>Code/Name</th>
+                        <th>Description</th>
+                        <th>Due Date</th>
+                        <th>Discount</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
