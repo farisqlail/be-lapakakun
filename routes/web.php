@@ -13,4 +13,6 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])-
 ');
 
 Route::resource('users', \App\Http\Controllers\UserController::class);
+Route::resource('banners', \App\Http\Controllers\BannerController::class);
+
 

@@ -122,7 +122,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/banners">
                     <i class="fas fa-fw fa-tv"></i>
                     <span>Banner</span></a>
             </li>
@@ -363,7 +363,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; Lapak Akun {{date('Y')}}</span>
                     </div>
                 </div>
             </footer>
