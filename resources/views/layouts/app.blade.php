@@ -82,7 +82,6 @@
                         <h6 class="collapse-header">Master : </h6>
                         <a class="collapse-item" href="buttons.html">Products</a>
                         <a class="collapse-item" href="cards.html">Template Chats</a>
-                        <a class="collapse-item" href="cards.html">Promo</a>
                         <a class="collapse-item" href="cards.html">WA Admin</a>
                         <a class="collapse-item" href="cards.html">Payments</a>
                     </div>
@@ -128,9 +127,9 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/vouchers">
                     <i class="fas fa-fw fa-percent"></i>
-                    <span>Promo</span></a>
+                    <span>Vouchers</span></a>
             </li>
 
             <!-- Divider -->
