@@ -57,7 +57,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/members">
                     <i class="fas fa-fw fa-users"></i>
                     <span>Member</span></a>
             </li>
@@ -81,9 +81,9 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Master : </h6>
                         <a class="collapse-item" href="buttons.html">Products</a>
-                        <a class="collapse-item" href="cards.html">Template Chats</a>
+                        <a class="collapse-item" href="/chat-templates">Template Chats</a>
                         <a class="collapse-item" href="/categories">Categories</a>
-                        <a class="collapse-item" href="cards.html">WA Admin</a>
+                        <a class="collapse-item" href="/contacts">WA Admin</a>
                     </div>
                 </div>
             </li>
