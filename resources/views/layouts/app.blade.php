@@ -37,7 +37,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Lapak Akun</div>
+                <div class="sidebar-brand-text mx-3">Joinan</div>
             </a>
 
             <!-- Divider -->
@@ -82,8 +82,8 @@
                         <h6 class="collapse-header">Master : </h6>
                         <a class="collapse-item" href="buttons.html">Products</a>
                         <a class="collapse-item" href="cards.html">Template Chats</a>
+                        <a class="collapse-item" href="/categories">Categories</a>
                         <a class="collapse-item" href="cards.html">WA Admin</a>
-                        <a class="collapse-item" href="cards.html">Payments</a>
                     </div>
                 </div>
             </li>
@@ -101,6 +101,7 @@
                         <h6 class="collapse-header">Transaction:</h6>
                         <a class="collapse-item" href="utilities-color.html">Pending</a>
                         <a class="collapse-item" href="utilities-border.html">History</a>
+                        <a class="collapse-item" href="utilities-border.html">Payments</a>
                     </div>
                 </div>
             </li>
