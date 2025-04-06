@@ -22,6 +22,8 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('sb-admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
@@ -80,7 +82,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Master : </h6>
-                        <a class="collapse-item" href="buttons.html">Products</a>
+                        <a class="collapse-item" href="/products">Products</a>
                         <a class="collapse-item" href="/chat-templates">Template Chats</a>
                         <a class="collapse-item" href="/categories">Categories</a>
                         <a class="collapse-item" href="/contacts">WA Admin</a>
@@ -101,7 +103,7 @@
                         <h6 class="collapse-header">Transaction:</h6>
                         <a class="collapse-item" href="utilities-color.html">Pending</a>
                         <a class="collapse-item" href="utilities-border.html">History</a>
-                        <a class="collapse-item" href="utilities-border.html">Payments</a>
+                        <a class="collapse-item" href="/payments">Payments</a>
                     </div>
                 </div>
             </li>
@@ -429,6 +431,8 @@
     <script>
         CKEDITOR.replace('description');
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     @stack('scripts')
 </body>

@@ -36,7 +36,7 @@
                         </td>
                         <td>
                             <a href="{{ route('members.edit', $member) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen text-white"></i></a>
-                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="{{ $member->id }}"><i class="fas fa-trash-alt"></i></button>
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="{{ $member->uuid }}"><i class="fas fa-trash-alt"></i></button>
                         </td>
                         @endforeach
                 </tbody>
@@ -72,8 +72,8 @@
         $('#membersTable').DataTable();
 
         $('#deleteModal').on('show.bs.modal', function(event) {
-            const id = $(event.relatedTarget).data('id');
-            $('#deleteForm').attr('action', '/members/' + id);
+            const uuid = $(event.relatedTarget).data('id');
+            $('#deleteForm').attr('action', '/members/' + uuid);
         });
     });
 </script>
