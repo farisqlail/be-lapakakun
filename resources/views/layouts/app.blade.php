@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Lapak Akun</title>
+    <title>Joinan</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('sb-admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -101,8 +101,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Transaction:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Pending</a>
-                        <a class="collapse-item" href="utilities-border.html">History</a>
+                        <a class="collapse-item" href="/transactions">Transactions</a>
+                        <a class="collapse-item" href="/transactions/history">History</a>
                         <a class="collapse-item" href="/payments">Payments</a>
                     </div>
                 </div>
@@ -365,7 +365,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Lapak Akun {{date('Y')}}</span>
+                        <span>Copyright &copy; Joinan {{date('Y')}}</span>
                     </div>
                 </div>
             </footer>

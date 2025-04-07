@@ -21,5 +21,7 @@ Route::resource('chat-templates', \App\Http\Controllers\ChatTemplateController::
 Route::resource('members', \App\Http\Controllers\MemberController::class);
 Route::resource('products', \App\Http\Controllers\ProductController::class);
 Route::resource('payments', \App\Http\Controllers\PaymentController::class);
+Route::resource('transactions', \App\Http\Controllers\TransactionController::class)->except(['show']);
+Route::get('transactions/history', [\App\Http\Controllers\TransactionController::class, 'history']);
 
 
