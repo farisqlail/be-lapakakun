@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
+            $table->foreignId('id_account')->nullable()->constrained('accounts')->onDelete('set null');
             $table->string('transaction_code', 5)->unique();
             $table->string('customer_name');
             $table->string('customer_number');

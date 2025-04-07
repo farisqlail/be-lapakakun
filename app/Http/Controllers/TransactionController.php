@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -78,5 +79,72 @@ class TransactionController extends Controller
     {
         $transactions = Transaction::with(['product', 'category', 'product'])->where('status_payment', 'paid')->get();
         return view('transactions.history', compact('transactions'));
+    }
+
+    public function provideAccount()
+    {
+        $transactions = Transaction::with(['product', 'category'])
+            ->where('status_payment', 'paid') // misal hanya untuk yang sudah dibayar
+            ->get();
+
+        $provided = [];
+
+        foreach ($transactions as $trx) {
+            $accounts = Account::where('id_product', $trx->id_product)
+                ->whereHas('product.categories', function ($q) use ($trx) {
+                    $q->where('categories.id', $trx->id_category);
+                })
+                ->where('stock', '>', 0)
+                ->get();
+
+            if ($accounts->count() == 0) {
+                $provided[] = [
+                    'transaction_code' => $trx->transaction_code,
+                    'customer_name' => $trx->customer_name,
+                    'note' => 'Tidak ada akun tersedia'
+                ];
+                continue;
+            }
+
+            $selectedAccount = $accounts->first(); // Ambil yang pertama dengan stok
+            $selectedAccount->decrement('stock'); // Kurangi stok
+
+            $provided[] = [
+                'transaction_code' => $trx->transaction_code,
+                'customer_name'    => $trx->customer_name,
+                'email'            => $selectedAccount->email,
+                'number'           => $selectedAccount->number,
+                'product'          => $selectedAccount->product->title,
+                'category'         => $trx->category->name,
+            ];
+        }
+
+        return view('transactions.provided', compact('provided'));
+    }
+
+    public function provideSingleAccount(Transaction $transaction)
+    {
+        if ($transaction->id_account) {
+            return redirect()->back()->with('error', 'Transaksi ini sudah memiliki akun.');
+        }
+
+        $accounts = Account::where('id_product', $transaction->id_product)
+            ->whereHas('product.categories', function ($q) use ($transaction) {
+                $q->where('categories.id', $transaction->id_category);
+            })
+            ->where('stock', '>', 0)
+            ->get();
+
+        if ($accounts->isEmpty()) {
+            return redirect()->back()->with('error', 'Tidak ada akun tersedia untuk transaksi ini.');
+        }
+
+        $selected = $accounts->first();
+        $selected->decrement('stock');
+
+        $transaction->update(['id_account' => $selected->id]);
+
+        return redirect()->back()->with('success', 'Akun berhasil diberikan: Email ' .
+            $selected->email . ', Nomor: ' . $selected->number);
     }
 }

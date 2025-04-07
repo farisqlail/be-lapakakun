@@ -9,6 +9,7 @@ class Transaction extends Model
 {
 
     protected $fillable = [
+        'id_account',
         'uuid',
         'transaction_code',
         'customer_name',
@@ -43,5 +44,10 @@ class Transaction extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'id_category');
+    }
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class, 'id_account'); // pastikan kolomnya sesuai
     }
 }

@@ -86,6 +86,7 @@
                         <a class="collapse-item" href="/chat-templates">Template Chats</a>
                         <a class="collapse-item" href="/categories">Categories</a>
                         <a class="collapse-item" href="/contacts">WA Admin</a>
+                        <a class="collapse-item" href="/accounts">Accounts</a>
                     </div>
                 </div>
             </li>
