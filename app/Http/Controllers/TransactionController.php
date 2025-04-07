@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TransactionCreatedMail;
 
 class TransactionController extends Controller
 {
@@ -40,7 +42,13 @@ class TransactionController extends Controller
         $data['uuid'] = Str::uuid();
         $data['transaction_code'] = strtoupper(Str::random(5));
 
-        Transaction::create($data);
+        $transaction = Transaction::create($data);
+
+        try {
+            Mail::to('faris.riskilail@gmail.com')->send(new TransactionCreatedMail($transaction));
+        } catch (\Exception $e) {
+            \Log::error("Gagal kirim email transaksi: " . $e->getMessage());
+        }
 
         return redirect()->route('transactions.index')->with('success', 'Transaksi berhasil ditambahkan.');
     }
