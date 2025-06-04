@@ -29,11 +29,10 @@ class AccountController extends Controller
             'due_date' => 'required|date',
             'number' => 'required',
             'stock' => 'required|integer|min:0',
+            'link' => 'nullable|url'
         ]);
 
         $data = $request->all();
-        // Optional: simpan hash jika perlu
-        // $data['password'] = bcrypt($request->password);
 
         Account::create($data);
         return redirect()->route('accounts.index')->with('success', 'Akun berhasil ditambahkan.');
@@ -54,13 +53,12 @@ class AccountController extends Controller
             'due_date' => 'required|date',
             'number' => 'required',
             'stock' => 'required|integer|min:0',
+            'link' => 'nullable|url'
         ]);
 
         $data = $request->except('password');
         if ($request->filled('password')) {
             $data['password'] = $request->password;
-            // Optional: bcrypt
-            // $data['password'] = bcrypt($request->password);
         }
 
         $account->update($data);

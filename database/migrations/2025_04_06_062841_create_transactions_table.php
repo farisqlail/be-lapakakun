@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('status_payment', ['pending', 'paid', 'cancel'])->default('pending');
             $table->decimal('discount', 8, 2)->default(0);
             $table->decimal('total_price', 12, 2);
+            $table->date('due_date');
             $table->timestamps();
         });
     }

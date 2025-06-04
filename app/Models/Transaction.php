@@ -18,7 +18,8 @@ class Transaction extends Model
         'id_category',
         'status_payment',
         'discount',
-        'total_price'
+        'total_price',
+        'due_date'
     ];
 
     protected static function boot()

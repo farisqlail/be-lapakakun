@@ -49,6 +49,16 @@
 </div>
 
 <div class="form-group">
+    <label>Berapa Bulan Beli</label>
+    <input type="number" name="periode_bulan" id="periode_bulan" class="form-control" value="{{ old('periode_bulan', 1) }}" min="1" required>
+</div>
+
+<div class="form-group">
+    <label>Perkiraan Jatuh Tempo</label>
+    <input type="text" class="form-control" id="due_date_preview" name="due_date" readonly>
+</div>
+
+<div class="form-group">
     <label>Diskon (Rp)</label>
     <input type="number" name="discount" class="form-control" step="0.01"
         value="{{ old('discount', $transaction->discount ?? 0) }}">
@@ -69,19 +79,42 @@
         let selected = $('#id_product').find(':selected');
         let price = parseFloat(selected.data('price') || 0);
         let discount = parseFloat($('[name="discount"]').val()) || 0;
+        let periode = parseInt($('#periode_bulan').val()) || 1;
 
-        let total = price - discount;
+        let total = (price * periode) - discount;
         total = total < 0 ? 0 : total;
 
         $('#total_price').val(total.toFixed(2));
     }
 
+    function hitungDueDateFromNow() {
+        const periode = parseInt($('#periode_bulan').val());
+
+        if (!periode || periode < 1) {
+            $('#due_date_preview').val('');
+            return;
+        }
+
+        let today = new Date();
+        today.setMonth(today.getMonth() + periode);
+
+        const year = today.getFullYear();
+        const month = ('0' + (today.getMonth() + 1)).slice(-2);
+        const day = ('0' + today.getDate()).slice(-2);
+
+        $('#due_date_preview').val(`${year}-${month}-${day}`);
+    }
+
     $(document).ready(function() {
         $('#id_product').on('change', hitungTotal);
         $('[name="discount"]').on('input', hitungTotal);
+        $('#periode_bulan').on('input change', function() {
+            hitungTotal();
+            hitungDueDateFromNow();
+        });
 
-        // Trigger awal jika form sudah ada data
         hitungTotal();
+        hitungDueDateFromNow();
     });
 </script>
 @endpush

@@ -10,12 +10,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TransactionCreatedMail;
+use Carbon\Carbon;
 
 class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = Transaction::with(['product', 'category'])->get();
+        $transactions = Transaction::with(['product', 'category'])
+            ->latest()
+            ->get();
+
         return view('transactions.index', compact('transactions'));
     }
 
@@ -36,6 +40,7 @@ class TransactionController extends Controller
             'status_payment' => 'required|in:pending,paid,cancel',
             'discount' => 'nullable|numeric',
             'total_price' => 'required|numeric',
+            'due_date' => 'required|date',
         ]);
 
         $data = $request->all();
@@ -70,9 +75,12 @@ class TransactionController extends Controller
             'status_payment' => 'required|in:pending,paid,cancel',
             'discount' => 'nullable|numeric',
             'total_price' => 'required|numeric',
+            'periode_bulan' => 'required|integer|min:1',
         ]);
 
-        $transaction->update($request->all());
+        $data = $request->all();
+        $data['due_date'] = Carbon::now()->addMonths($request->periode_bulan);
+        $transaction->update($data);
 
         return redirect()->route('transactions.index')->with('success', 'Transaksi berhasil diperbarui.');
     }
@@ -92,7 +100,7 @@ class TransactionController extends Controller
     public function provideAccount()
     {
         $transactions = Transaction::with(['product', 'category'])
-            ->where('status_payment', 'paid') // misal hanya untuk yang sudah dibayar
+            ->where('status_payment', 'paid')
             ->get();
 
         $provided = [];
@@ -114,8 +122,8 @@ class TransactionController extends Controller
                 continue;
             }
 
-            $selectedAccount = $accounts->first(); // Ambil yang pertama dengan stok
-            $selectedAccount->decrement('stock'); // Kurangi stok
+            $selectedAccount = $accounts->first();
+            $selectedAccount->decrement('stock');
 
             $provided[] = [
                 'transaction_code' => $trx->transaction_code,
@@ -149,10 +157,15 @@ class TransactionController extends Controller
 
         $selected = $accounts->first();
         $selected->decrement('stock');
-
         $transaction->update(['id_account' => $selected->id]);
+        $productTitle = strtolower($selected->product->title ?? '');
 
-        return redirect()->back()->with('success', 'Akun berhasil diberikan: Email ' .
-            $selected->email . ', Nomor: ' . $selected->number);
+        if (strpos($productTitle, 'youtube') !== false || strpos($productTitle, 'spotify') !== false) {
+            $info = 'Link: ' . $selected->link;
+        } else {
+            $info = 'Email: ' . $selected->email . ', Nomor: ' . $selected->number;
+        }
+
+        return redirect()->back()->with('success', 'Akun berhasil diberikan: ' . $info);
     }
 }

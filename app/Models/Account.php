@@ -12,7 +12,8 @@ class Account extends Model
         'password',
         'due_date',
         'number',
-        'stock'
+        'stock',
+        'link'
     ];
 
     public function product()
