@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\VoucherController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +32,4 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('accounts', \App\Http\Controllers\AccountController::class);
 });
+
